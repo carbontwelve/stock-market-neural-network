@@ -1,5 +1,5 @@
 # stock-market-neural-network
-A tinker toy for "forecasting" the next hour on the stock market.
+A tinker toy for "forecasting" the next hour on the stock market. Please be advised this is a toy project and probably does not work. Nobody can tell the future, even a computer, the best this is good for is identifying trends over a predefined time window based upon a previous time window.
 
 # Usage
 

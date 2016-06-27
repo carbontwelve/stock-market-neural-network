@@ -32,24 +32,28 @@ class StatusCommand extends Command
 
         $table = new Table($output);
 
-        $table->setHeaders(['Symbol', 'Total Ticks', 'Last Ticked', 'Last Value']);
+        $table->setHeaders(['Symbol', 'Total Ticks', 'First Ticked', 'Last Ticked', 'Last Value']);
 
         foreach($symbols as $symbol => $ticks) {
 
             if ($ticks > 0) {
-                $stock = new Stock();
-                $stock = $stock->query('SELECT * FROM ' . $stock->getTable() . ' WHERE symbol = "' . $symbol . '" ORDER BY id DESC LIMIT 1');
-                $stock = $stock[0];
+                $last = new Stock();
+                $last = $last->query('SELECT * FROM ' . $last->getTable() . ' WHERE symbol = "' . $symbol . '" ORDER BY id DESC LIMIT 1');
+                $last = $last[0];
+
+                $first = new Stock();
+                $first = $last->query('SELECT * FROM ' . $first->getTable() . ' WHERE symbol = "' . $symbol . '" ORDER BY id ASC LIMIT 1');
+                $first = $first[0];
 
                 $table->addRow([
                     $symbol,
                     $ticks,
-                    date('Y-m-d H:i:s', $stock->created_at),
-                    $stock->last_value
+                    date('Y-m-d H:i:s', $first->created_at),
+                    date('Y-m-d H:i:s', $last->created_at),
+                    $last->last_value
                 ]);
             }
         }
-
         $table->render();
     }
 }

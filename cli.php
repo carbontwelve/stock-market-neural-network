@@ -10,6 +10,10 @@ use Symfony\Component\Console\Application;
 ]);
 
 $application = new Application();
-$application->add(new \App\Commands\InitDatabaseCommand());
-$application->add(new \App\Commands\ScrapeCommand());
+$application->addCommands([
+    new \App\Commands\InitDatabaseCommand(),
+    new \App\Commands\ScrapeCommand(),
+    new \App\Commands\NeuralNetworkForecastCommand(),
+    new \App\Commands\NeuralNetworkTrainCommand()
+]);
 $application->run();

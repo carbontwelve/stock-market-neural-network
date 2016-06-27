@@ -14,6 +14,7 @@ $application->addCommands([
     new \App\Commands\InitDatabaseCommand(),
     new \App\Commands\ScrapeCommand(),
     new \App\Commands\NeuralNetworkForecastCommand(),
-    new \App\Commands\NeuralNetworkTrainCommand()
+    new \App\Commands\NeuralNetworkTrainCommand(),
+    new \App\Commands\StatusCommand()
 ]);
 $application->run();
